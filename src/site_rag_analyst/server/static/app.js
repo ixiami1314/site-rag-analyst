@@ -15,7 +15,7 @@ const state = { config: null, runId: null, pollTimer: null, t0: null, result: nu
 
 async function boot() {
   try {
-    const res = await fetch("/api/config");
+    const res = await fetch("api/config");
     state.config = await res.json();
     const badge = $("#mode-badge");
     if (state.config.demo_mode) {
@@ -60,7 +60,7 @@ async function startRun(url) {
   renderRail([]);
 
   try {
-    const res = await fetch("/api/runs", {
+    const res = await fetch("api/runs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: url.trim() }),
@@ -91,7 +91,7 @@ function poll(runId) {
   state.pollTimer = setInterval(async () => {
     let payload;
     try {
-      const res = await fetch("/api/runs/" + runId);
+      const res = await fetch("api/runs/" + runId);
       if (!res.ok) throw new Error("HTTP " + res.status);
       payload = await res.json();
     } catch {
@@ -184,7 +184,7 @@ function renderReport(result) {
     (report.model ? " · <b>model</b> " + esc(report.model) : "") +
     " · <b>pages</b> " + report.pages.length +
     " · <b>chunks</b> " + result.chunks.length +
-    ' · <a href="/api/runs/' + state.runId + '/report.md" target="_blank">report.md ↗</a>';
+    ' · <a href="api/runs/' + state.runId + '/report.md" target="_blank">report.md ↗</a>';
 
   const body = document.createElement("div");
   body.className = "report";
