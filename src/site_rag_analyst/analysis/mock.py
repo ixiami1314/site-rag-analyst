@@ -42,9 +42,10 @@ class MockAnalyst:
     ) -> SiteReport:
         sections: list[ReportSection] = []
         titles = {sid: title for sid, title, _q in ANALYSIS_SECTIONS}
+        cited_chunks: set[str] = set()  # each chunk backs at most one section
         for preview in retrieval:
             section_id = preview.section_id or self._section_id(preview.query)
-            points = self._points(preview)
+            points = self._points(preview, cited_chunks)
             sections.append(
                 ReportSection(
                     id=section_id,
@@ -64,9 +65,17 @@ class MockAnalyst:
 
     # ------------------------------------------------------------------ #
 
-    def _points(self, preview: RetrievalPreview, per_chunk_limit: int = 1) -> list[CitedPoint]:
+    def _points(
+        self,
+        preview: RetrievalPreview,
+        exclude_chunks: set[str] | None = None,
+        per_chunk_limit: int = 1,
+    ) -> list[CitedPoint]:
+        exclude_chunks = exclude_chunks if exclude_chunks is not None else set()
         points: list[CitedPoint] = []
-        for item in preview.results[:4]:
+        for item in preview.results[:6]:
+            if item.chunk.id in exclude_chunks:
+                continue  # already backs a point in an earlier section
             sentences = [
                 s.strip() for s in _SENTENCE_RE.split(item.chunk.text) if len(s.strip()) > 30
             ]
@@ -78,6 +87,7 @@ class MockAnalyst:
             )
             chosen = [text for _pos, text in ranked[:per_chunk_limit]]
             points.append(CitedPoint(text=" ".join(chosen), citations=[item.chunk.id]))
+            exclude_chunks.add(item.chunk.id)
         return points
 
     @staticmethod

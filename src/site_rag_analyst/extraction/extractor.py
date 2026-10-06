@@ -32,7 +32,7 @@ DROP_TAGS = (
 )
 
 _HEADING_TAGS = {"h1": 1, "h2": 2, "h3": 3, "h4": 4}
-_WS_RE = re.compile(r"[ \t\r\f\v]+")
+_WS_RE = re.compile(r"\s+")
 _BLANK_RE = re.compile(r"\n\s*\n+")
 
 
