@@ -1,0 +1,20 @@
+# 30-second quickstart:  docker compose up --build  ->  http://localhost:8000
+# No API keys required — demo mode runs fully offline. To analyze with a real
+# LLM, set LLM_BASE_URL / LLM_API_KEY / LLM_MODEL in a .env file next to this
+# one (see .env.example) and restart.
+services:
+  analyst:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-claude-sonnet-5-5}
+      EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-auto}
+      CRAWL_MAX_PAGES: ${CRAWL_MAX_PAGES:-25}
+      CRAWL_DELAY_SECONDS: ${CRAWL_DELAY_SECONDS:-1.0}
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+    restart: unless-stopped
