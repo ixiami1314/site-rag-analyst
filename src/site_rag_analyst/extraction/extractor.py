@@ -39,7 +39,8 @@ _BLANK_RE = re.compile(r"\n\s*\n+")
 def _clean_text(fragment: Tag | BeautifulSoup) -> str:
     """Render a fragment to plain text; headings become '##'-prefixed lines."""
     lines: list[str] = []
-    for element in fragment.find_all(["h1", "h2", "h3", "h4", "p", "li", "td", "pre", "blockquote", "figcaption"]):
+    content_tags = ["h1", "h2", "h3", "h4", "p", "li", "td", "pre", "blockquote", "figcaption"]
+    for element in fragment.find_all(content_tags):
         if isinstance(element, Tag):
             text = _WS_RE.sub(" ", element.get_text(" ")).strip()
             if not text:

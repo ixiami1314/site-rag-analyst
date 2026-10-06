@@ -58,7 +58,10 @@ class TestStructureAwareness:
         ]
 
     def test_small_sections_merge_with_first_heading(self) -> None:
-        text = "## Alpha\nfirst small section body text.\n\n## Beta\nsecond small section body text."
+        text = (
+            "## Alpha\nfirst small section body text.\n\n"
+            "## Beta\nsecond small section body text."
+        )
         chunks = Chunker(target_words=100, overlap_words=5).chunk_page(make_page(text), 0)
         assert len(chunks) == 1  # merged: both fit in one chunk
         assert chunks[0].heading_path == "Alpha"
