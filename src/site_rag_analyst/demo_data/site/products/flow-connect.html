@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flow Connect — Meridian Flow</title>
+<meta name="description" content="Connect SAP S/4HANA, Oracle NetSuite, legacy EDI and 80+ other systems with prebuilt connectors and a flexible mapping language.">
+</head>
+<body>
+<header><strong>Meridian Flow</strong>
+<nav class="main-nav">
+  <a href="http://demo.meridian.test/">Home</a>
+  <a href="http://demo.meridian.test/products/flow-builder">Flow Builder</a>
+  <a href="http://demo.meridian.test/products/flow-connect">Flow Connect</a>
+  <a href="http://demo.meridian.test/products/flow-insights">Flow Insights</a>
+  <a href="http://demo.meridian.test/products/flow-guard">Flow Guard</a>
+  <a href="http://demo.meridian.test/pricing">Pricing</a>
+  <a href="http://demo.meridian.test/docs/getting-started">Docs</a>
+  <a href="http://demo.meridian.test/changelog">Changelog</a>
+  <a href="http://demo.meridian.test/about">About</a>
+  <a href="http://demo.meridian.test/contact">Contact</a>
+</nav>
+</header>
+<main>
+
+<h1>Flow Connect</h1>
+<p>Flow Connect is the integration layer of Meridian Flow. It links the
+systems your shipments already live in — ERPs, TMS platforms, customer
+portals, email inboxes — so flows read and write real data instead of
+re-typing it.</p>
+
+<h2>Prebuilt connectors</h2>
+<p>More than 80 prebuilt connectors ship with the platform, including SAP
+S/4HANA, Oracle NetSuite, Microsoft Dynamics 365, Shopify, and carrier APIs
+for DHL, Maersk and DSV. Each connector handles authentication, pagination
+and error semantics for you.</p>
+
+<h2>Legacy EDI support</h2>
+<p>Many forwarders still live on EDI. Flow Connect parses and emits EDIFACT
+and X12 documents natively — including D96A customs messages and 214 status
+updates — with a mapping language that translates between EDI segments and
+modern JSON fields.</p>
+
+<h2>Mapping language</h2>
+<p>When a prebuilt connector is not enough, the mapping language lets you
+describe transformations declaratively: field lookups, conditional splits,
+unit conversions, and reusable functions. Mappings are versioned and
+testable against sample documents before going live.</p>
+
+<h2>Webhooks and REST</h2>
+<p>Anything with an HTTP interface can join a flow. Outbound webhooks support
+HMAC signing and automatic retries with exponential backoff; inbound REST
+endpoints are generated per flow with OpenAPI schemas.</p>
+
+<h2>Connector lifecycle</h2>
+<p>Connectors version independently of the platform. When SAP ships a new
+API release, we certify the connector against it, publish it as a new minor
+version, and your workspace picks it up in a maintenance window you control.
+Deprecations are announced at least 90 days ahead with a migration note.</p>
+
+<h2>Security of connections</h2>
+<p>Credentials are stored in a hardware-backed vault, scoped per connector,
+and never appear in logs or exports. All traffic uses TLS 1.3; EU-resident
+workspaces keep connector traffic inside the Frankfurt region. Access to a
+connection can be restricted by role, so an operator can run a flow that
+reads SAP without ever seeing the service account behind it.</p>
+
+<h2>Email and spreadsheet ingestion</h2>
+<p>Two connectors do a surprising amount of work. The email connector turns
+a monitored inbox into a document source, parsing attachments (PDF, EDI,
+Excel) into structured fields. The spreadsheet connector watches a folder
+for CSV and XLSX files, maps columns with the mapping language, and refuses
+files that fail validation — sending a rejection notice back to the sender.</p>
+
+</main>
+
+<footer>
+  <p>© 2026 Meridian Flow B.V. — Workflow automation for logistics teams.</p>
+  <a href="http://demo.meridian.test/about">About us</a>
+  <a href="http://demo.meridian.test/contact">Support</a>
+  <a href="http://demo.meridian.test/pricing">Plans</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API reference — Meridian Flow</title>
+<meta name="description" content="REST API v2 at api.meridianflow.test/v2 with bearer tokens, 600 requests/minute rate limit, cursor pagination and HMAC-signed webhooks.">
+</head>
+<body>
+<header><strong>Meridian Flow</strong>
+<nav class="main-nav">
+  <a href="http://demo.meridian.test/">Home</a>
+  <a href="http://demo.meridian.test/products/flow-builder">Flow Builder</a>
+  <a href="http://demo.meridian.test/products/flow-connect">Flow Connect</a>
+  <a href="http://demo.meridian.test/products/flow-insights">Flow Insights</a>
+  <a href="http://demo.meridian.test/products/flow-guard">Flow Guard</a>
+  <a href="http://demo.meridian.test/pricing">Pricing</a>
+  <a href="http://demo.meridian.test/docs/getting-started">Docs</a>
+  <a href="http://demo.meridian.test/changelog">Changelog</a>
+  <a href="http://demo.meridian.test/about">About</a>
+  <a href="http://demo.meridian.test/contact">Contact</a>
+</nav>
+</header>
+<main>
+
+<h1>API reference (v2)</h1>
+<p>The Meridian Flow REST API lets your systems start flows, read documents
+and subscribe to events. The base URL is <code>https://api.meridianflow.test/v2</code>;
+all endpoints accept and return JSON.</p>
+
+<h2>Authentication</h2>
+<p>API requests authenticate with bearer tokens created in Personal Settings
+or, preferably, workspace-scoped service tokens. Tokens carry the role of
+their owner; service tokens can be scoped to a single flow. Rotate tokens any
+time — old tokens remain valid for 24 hours after rotation as a grace
+period.</p>
+
+<h2>Rate limits</h2>
+<p>The API allows 600 requests per minute per workspace, with a burst of 60.
+Responses include X-RateLimit-Remaining headers, and 429 replies carry a
+Retry-After header. Sustained limit overage is never billed — requests are
+simply throttled.</p>
+
+<h2>Pagination</h2>
+<p>List endpoints paginate with cursors: pass the cursor from
+next_page_cursor until it comes back null. Cursors are stable for 24 hours.
+Page size defaults to 50 and can be raised to 200.</p>
+
+<h2>Webhooks</h2>
+<p>Subscribe to flow events (run.started, step.waiting, run.completed,
+run.failed) per flow or workspace-wide. Each webhook has a signing secret;
+payloads are signed with HMAC-SHA256 in the X-Meridian-Signature header.
+Failed deliveries retry with exponential backoff for 24 hours — retry
+controls shipped in version 2.3.0.</p>
+
+<h2>Core endpoints</h2>
+<ul>
+  <li><code>POST /v2/runs</code> — start a flow run with input documents</li>
+  <li><code>GET /v2/runs/{id}</code> — run status, step timeline and outputs</li>
+  <li><code>GET /v2/documents</code> — list documents with cursor pagination</li>
+  <li><code>POST /v2/runs/{id}/approve</code> — resolve an approval step</li>
+</ul>
+
+<h2>Errors</h2>
+<p>Errors are JSON with code, message and request_id. Rate limit errors
+return 429 with Retry-After; validation errors return 422 with a field-level
+details array. 5xx errors are safe to retry with backoff. Include
+request_id when contacting support — it resolves to the exact trace.</p>
+
+<h2>Idempotency</h2>
+<p>POST /v2/runs accepts an Idempotency-Key header. Replays within 24 hours
+return the original run instead of starting a duplicate — use this for
+retries after timeouts. Webhook deliveries are idempotent by delivery id.</p>
+
+<h2>SDKs</h2>
+<p>Official SDKs: Python (pip install meridianflow), TypeScript (npm
+@meridianflow/sdk), and a CLI (brew install meridianflow-cli). SDKs are
+generated from the OpenAPI schema, so every endpoint here is available with
+typed responses.</p>
+
+<h2>Versioning</h2>
+<p>v2 is the current major version; v1 sunset is scheduled for June 2027.
+Breaking changes ship behind new minor versions with a migration window of
+at least two quarters. Schema additions are never breaking — unknown fields
+should be ignored by clients.</p>
+
+</main>
+
+<footer>
+  <p>© 2026 Meridian Flow B.V. — Workflow automation for logistics teams.</p>
+  <a href="http://demo.meridian.test/about">About us</a>
+  <a href="http://demo.meridian.test/contact">Support</a>
+  <a href="http://demo.meridian.test/pricing">Plans</a>
+</footer>
+
+</body>
+</html>

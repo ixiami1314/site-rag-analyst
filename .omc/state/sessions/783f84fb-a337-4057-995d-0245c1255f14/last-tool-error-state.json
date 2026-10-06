@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"cd ~/workspace-guru/crazy-rag/site-rag-analyst && .venv/bin/python -m pytest tests/ 2>&1 | tail -1 && .venv/bin/python -m ruff check src tests && git add -A && git commit -q -m \\\"feat(retr...",
-  "error": "Exit code 1\n98 passed in 0.48s\nF821 Undefined name `api_key`\n  --> src/site_rag_analyst/analysis/llm.py:46:49\n   |\n44 |         return self._model\n45 |         self._client = httpx.Client(\n46 |             headers={\"Authorization\": f\"Bearer {api_key}\"},\n   |                                                 ^^^^^^^\n47 |             timeout=httpx.Timeout(timeout_seconds),\n48 |         )\n   |\n\nF821 Undefined name `timeout_seconds`\n  --> src/site_rag_analyst/analysis/llm.py:47:35\n   |\n45 |         se...",
-  "timestamp": "2026-10-06T09:54:47.530Z",
+  "tool_input_preview": "{\"command\":\"cd ~/workspace-guru/crazy-rag/site-rag-analyst && .venv/bin/python - <<'EOF'\\nfrom site_rag_analyst.config import Settings\\nfrom site_rag_analyst.crawler import Crawler, DemoSiteFetcher\\nf...",
+  "error": "Exit code 1\nkept ratios: [0.93, 0.94, 0.93, 0.92, 0.92, 0.95, 0.94, 0.91, 0.93, 0.91, 0.93, 0.94]\navg: 0.929\n..........................                                               [100%]",
+  "timestamp": "2026-10-06T10:02:03.129Z",
   "retry_count": 1
 }

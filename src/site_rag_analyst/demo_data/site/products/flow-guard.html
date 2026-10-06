@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flow Guard — Meridian Flow</title>
+<meta name="description" content="Enterprise security: SSO via SAML and OIDC, role-based access control, tamper-evident audit logs retained for 7 years, EU data residency.">
+</head>
+<body>
+<header><strong>Meridian Flow</strong>
+<nav class="main-nav">
+  <a href="http://demo.meridian.test/">Home</a>
+  <a href="http://demo.meridian.test/products/flow-builder">Flow Builder</a>
+  <a href="http://demo.meridian.test/products/flow-connect">Flow Connect</a>
+  <a href="http://demo.meridian.test/products/flow-insights">Flow Insights</a>
+  <a href="http://demo.meridian.test/products/flow-guard">Flow Guard</a>
+  <a href="http://demo.meridian.test/pricing">Pricing</a>
+  <a href="http://demo.meridian.test/docs/getting-started">Docs</a>
+  <a href="http://demo.meridian.test/changelog">Changelog</a>
+  <a href="http://demo.meridian.test/about">About</a>
+  <a href="http://demo.meridian.test/contact">Contact</a>
+</nav>
+</header>
+<main>
+
+<h1>Flow Guard</h1>
+<p>Flow Guard is the security and compliance layer for Enterprise plans. It
+answers the questions auditors and security teams ask before a logistics
+platform can touch shipment data.</p>
+
+<h2>Single sign-on</h2>
+<p>Flow Guard supports SAML 2.0 and OIDC single sign-on, with just-in-time
+provisioning and SCIM directory sync. Enforce SSO for the whole workspace or
+only for roles with access to financial documents.</p>
+
+<h2>Role-based access control</h2>
+<p>Permissions attach to roles, not individuals: operator, approver, flow
+designer, auditor, administrator. Fine-grained scopes control who can view a
+document, edit a flow, or export data — and roles can be scoped per customer
+or per lane.</p>
+
+<h2>Tamper-evident audit logs</h2>
+<p>Every read, write, approval, export and administrative action is written
+to an append-only audit log. Log entries are hash-chained, making tampering
+evident, and retained for 7 years. Auditors can be given a read-only role
+with log search access and no access to document contents.</p>
+
+<h2>Certifications and data residency</h2>
+<p>Meridian Flow is SOC 2 Type II certified (audited annually by an
+independent firm) and ISO 27001 certified since 2023. Enterprise workspaces
+can pin data residency to the EU region, hosted in Frankfurt, with encryption
+at rest (AES-256) and in transit (TLS 1.3).</p>
+
+<h2>Data handling</h2>
+<p>Documents are encrypted at rest with AES-256 and in transit with TLS
+1.3. Field-level policies can mask sensitive values (consignee tax ids, for
+example) from roles that do not need them — masked values never leave the
+platform through exports or the API for those roles.</p>
+
+<h2>Incident response</h2>
+<p>Guard subscribes your workspace to the platform incident feed: confirmed
+security incidents are reported to Enterprise admins within 24 hours, with
+a post-mortem within five business days. We run quarterly third-party
+penetration tests and publish the summary letter to Enterprise customers on
+request.</p>
+
+<h2>Bring your own key</h2>
+<p>Enterprise workspaces may supply their own encryption keys for document
+storage. Keys live in your KMS; the platform uses them via a delegation that
+you can revoke instantly, which immediately makes stored documents
+unreadable — by anyone, including us.</p>
+
+</main>
+
+<footer>
+  <p>© 2026 Meridian Flow B.V. — Workflow automation for logistics teams.</p>
+  <a href="http://demo.meridian.test/about">About us</a>
+  <a href="http://demo.meridian.test/contact">Support</a>
+  <a href="http://demo.meridian.test/pricing">Plans</a>
+</footer>
+
+</body>
+</html>

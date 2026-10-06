@@ -99,6 +99,9 @@ class ContentExtractor:
 
     def extract(self, page: FetchedPage, links_discovered: int = 0) -> ExtractedPage:
         soup = BeautifulSoup(page.html or "", "lxml")
+        # Baseline word count BEFORE boilerplate removal, so kept_ratio
+        # reflects how much of the raw page survived into the corpus.
+        raw_words = len(soup.get_text(" ", strip=True).split()) if soup.body is not None else 0
         for tag in soup.find_all(DROP_TAGS):
             tag.decompose()
 
@@ -110,7 +113,6 @@ class ContentExtractor:
         if isinstance(meta_desc, Tag) and meta_desc.get("content"):
             meta_description = str(meta_desc["content"]).strip()
 
-        raw_words = len(soup.get_text(" ", strip=True).split()) if soup.body is not None else 0
         main = _pick_main(soup)
         if main is None:
             return ExtractedPage(
