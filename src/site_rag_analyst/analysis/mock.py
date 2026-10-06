@@ -15,6 +15,7 @@ from __future__ import annotations
 import re
 from collections import Counter
 
+from site_rag_analyst.analysis.sections import ANALYSIS_SECTIONS
 from site_rag_analyst.embedding.tfidf import tokenize
 from site_rag_analyst.models import (
     CitedPoint,
@@ -40,12 +41,14 @@ class MockAnalyst:
         model: str = "extractive-demo",
     ) -> SiteReport:
         sections: list[ReportSection] = []
+        titles = {sid: title for sid, title, _q in ANALYSIS_SECTIONS}
         for preview in retrieval:
+            section_id = preview.section_id or self._section_id(preview.query)
             points = self._points(preview)
             sections.append(
                 ReportSection(
-                    id=self._section_id(preview.query),
-                    title=preview.query,
+                    id=section_id,
+                    title=titles.get(section_id, preview.query),
                     query=preview.query,
                     points=points,
                 )

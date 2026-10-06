@@ -64,6 +64,11 @@ select = [
     "SIM", # simplify
 ]
 
+[tool.ruff.lint.per-file-ignores]
+# Jinja template lines map 1:1 to output Markdown lines (table rows), so
+# wrapping them would corrupt the rendered report.
+"src/site_rag_analyst/reporting/report.py" = ["E501"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"

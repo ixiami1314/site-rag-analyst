@@ -104,6 +104,7 @@ class RetrievedChunk(BaseModel):
 class RetrievalPreview(BaseModel):
     """Top results for one analysis query (used by the UI and the report)."""
 
+    section_id: str = ""  # canonical analysis section this query belongs to
     query: str
     results: list[RetrievedChunk] = []
 

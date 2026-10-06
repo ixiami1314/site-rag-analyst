@@ -20,6 +20,7 @@ from typing import Protocol
 
 from site_rag_analyst.analysis.llm import ChatClient, extract_json
 from site_rag_analyst.analysis.mock import MockAnalyst
+from site_rag_analyst.analysis.sections import ANALYSIS_SECTIONS
 from site_rag_analyst.config import Settings
 from site_rag_analyst.models import (
     CitedPoint,
@@ -30,36 +31,6 @@ from site_rag_analyst.models import (
 )
 
 logger = logging.getLogger(__name__)
-
-# The analysis dimensions. Each drives one retrieval query; the union of
-# results is the LLM's (or the extractor's) grounding context.
-ANALYSIS_SECTIONS: list[tuple[str, str, str]] = [
-    (
-        "overview",
-        "Site Overview",
-        "what is this website about, its purpose and its main offerings",
-    ),
-    (
-        "products",
-        "Products & Features",
-        "products, features, capabilities and technical details described on the site",
-    ),
-    (
-        "pricing",
-        "Pricing",
-        "pricing plans, costs, tiers, trials, discounts and billing terms",
-    ),
-    (
-        "audience",
-        "Audience & Use Cases",
-        "who the products are for, target customers and real-world use cases",
-    ),
-    (
-        "company",
-        "Company & Contact",
-        "company background, team, contact channels and support options",
-    ),
-]
 
 _SYSTEM_PROMPT = """\
 You are a precise website analyst. You work strictly from the context chunks
