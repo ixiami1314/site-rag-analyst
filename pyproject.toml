@@ -7,14 +7,13 @@ name = "site-rag-analyst"
 version = "0.1.0"
 description = "Crawl a website, ground an LLM in it, and generate a structured, citation-backed analysis report."
 readme = "README.md"
-license = { text = "MIT" }
+license = { text = "Evaluation-Only — all rights reserved" }
 authors = [{ name = "weijun" }]
 requires-python = ">=3.11"
 keywords = ["rag", "crawler", "llm", "anythingllm", "retrieval", "pipeline"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",

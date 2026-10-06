@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/ixiami1314/site-rag-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/ixiami1314/site-rag-analyst/actions/workflows/ci.yml)
 ![Python 3.11+](https://img.shields.io/badge/python-3.11%20%7C%3.12%20%7C%3.13-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License: evaluation-only](https://img.shields.io/badge/license-evaluation--only-all%20rights%20reserved-lightgrey)
 
 A compact, self-contained RAG pipeline for website analysis:
 
@@ -248,4 +248,11 @@ site, fully offline.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+**Evaluation-only.** The source is published for skill-evaluation purposes
+only — to demonstrate the author's engineering to prospective clients.
+Commercial use, redistribution, or derivative works require written
+permission: open a
+[GitHub issue](https://github.com/ixiami1314/site-rag-analyst/issues)
+to request it. The hosted demo is for evaluation and may be withdrawn or
+changed at any time. The Work is provided "as is", with no warranty — see
+[LICENSE](LICENSE) for the full terms.

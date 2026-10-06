@@ -1,21 +1,40 @@
-MIT License
+site-rag-analyst — Evaluation-Only Source License
+==================================================
 
-Copyright (c) 2026 weijun
+Copyright (c) 2026 weijun. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Grant. The source code and documentation in this repository (the
+   "Work") are published solely so that third parties may evaluate the
+   technical skills of the author. You may read, run, and inspect the
+   Work for that purpose and for personal, non-commercial evaluation
+   only.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. Restrictions. Without prior written permission from the author, you
+   may not:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   a. use the Work, or any part of it, for any commercial purpose;
+   b. distribute, sublicense, publish, or otherwise make the Work, or
+      any derivative of it, available to any third party;
+   c. copy, modify, or create derivative works from the Work, except as
+      strictly necessary for local, non-commercial evaluation;
+   d. remove or obscure this notice or the attribution to the author.
+
+3. Online demo. The hosted demo referenced in this repository is
+   provided for evaluation and demonstration only, and may be withdrawn
+   or modified at any time without notice.
+
+4. NO WARRANTY. THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+   KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+   CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+   TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
+   WORK OR THE USE OF THE WORK.
+
+5. Permissions. Requests for written permission (commercial licensing,
+   redistribution, or derivative works) may be opened as a GitHub issue
+   at https://github.com/ixiami1314/site-rag-analyst/issues.
+
+6. Governing terms. This license constitutes the entire agreement
+   regarding the Work and is governed by the laws of the People's
+   Republic of China, without regard to its conflict-of-law rules.
