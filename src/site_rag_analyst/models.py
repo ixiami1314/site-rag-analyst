@@ -9,14 +9,14 @@ evaluated — which is exactly what the web UI and the eval harness do.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from pydantic import BaseModel, Field
 
 
 def utcnow() -> datetime:
     """Timezone-aware UTC now (pydantic default_factory helper)."""
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 # --------------------------------------------------------------------------- #
