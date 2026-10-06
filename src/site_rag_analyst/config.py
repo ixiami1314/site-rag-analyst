@@ -60,6 +60,11 @@ class Settings(BaseSettings):
     data_dir: Path = Path("data")
     output_dir: Path = Path("output")
 
+    # --- Service ---
+    # FastAPI's /docs and /openapi.json are handy locally but are surface
+    # area on a public deployment — disable them there with DOCS_ENABLED=false.
+    docs_enabled: bool = True
+
     @property
     def demo_mode(self) -> bool:
         """True when no LLM endpoint/key is configured — run offline instead."""

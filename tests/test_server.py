@@ -119,3 +119,27 @@ class TestRunLifecycle:
         response = client.get("/")
         assert response.status_code == 200
         assert "site-rag-analyst" in response.text
+
+
+class TestDocsToggle:
+    def test_docs_enabled_by_default(self, client: TestClient) -> None:
+        assert client.get("/docs").status_code == 200
+        assert client.get("/openapi.json").status_code == 200
+
+    def test_docs_disabled_in_production_mode(self, tmp_path) -> None:
+        prod_settings = Settings(
+            _env_file=None,
+            llm_base_url="",
+            llm_api_key="",
+            docs_enabled=False,
+            data_dir=tmp_path / "data",
+            output_dir=tmp_path / "output",
+            crawl_delay_seconds=0.0,
+        )
+        with TestClient(create_app(prod_settings)) as prod_client:
+            assert prod_client.get("/docs").status_code == 404
+            assert prod_client.get("/redoc").status_code == 404
+            assert prod_client.get("/openapi.json").status_code == 404
+            # core functionality unaffected
+            assert prod_client.get("/api/config").status_code == 200
+            assert prod_client.get("/").status_code == 200

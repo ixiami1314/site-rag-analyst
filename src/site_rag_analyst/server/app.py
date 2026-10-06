@@ -162,7 +162,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         settings.output_dir.mkdir(parents=True, exist_ok=True)
         yield
 
-    app = FastAPI(title="site-rag-analyst", version=__version__, lifespan=lifespan)
+    app = FastAPI(
+        title="site-rag-analyst",
+        version=__version__,
+        lifespan=lifespan,
+        docs_url="/docs" if settings.docs_enabled else None,
+        redoc_url="/redoc" if settings.docs_enabled else None,
+        openapi_url="/openapi.json" if settings.docs_enabled else None,
+    )
 
     @app.get("/api/config")
     def config() -> dict[str, Any]:
