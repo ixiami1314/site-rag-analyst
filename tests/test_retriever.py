@@ -45,9 +45,10 @@ def build_corpus(tmp_path):
     for index, page in enumerate(pages):
         chunks.extend(chunker.chunk_page(page, page_index=index))
     embeddings = TfidfEmbeddings()
-    embeddings.fit(chunks)
+    texts = [c.text for c in chunks]
+    embeddings.fit(texts)
     store = NumpyVectorStore(tmp_path / "rag.sqlite3")
-    store.add(chunks, embeddings.embed([c.text for c in chunks]))
+    store.add(chunks, embeddings.embed(texts))
     return store, embeddings
 
 

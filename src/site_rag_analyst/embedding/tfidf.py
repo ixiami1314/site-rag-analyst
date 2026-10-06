@@ -20,8 +20,6 @@ from collections import Counter
 
 import numpy as np
 
-from site_rag_analyst.models import Chunk
-
 _TOKEN_RE = re.compile(r"[a-z0-9]+")
 
 # Compact English stopword list — enough to keep nav-ish filler from
@@ -54,11 +52,12 @@ class TfidfEmbeddings:
 
     # ------------------------------------------------------------------ #
 
-    def fit(self, chunks: list[Chunk]) -> None:
+    def fit(self, texts: list[str]) -> None:
+        """Build vocabulary and IDF over the corpus embedding texts."""
         doc_counts: list[Counter[str]] = []
         df: Counter[str] = Counter()
-        for chunk in chunks:
-            counts = Counter(tokenize(chunk.text))
+        for text in texts:
+            counts = Counter(tokenize(text))
             doc_counts.append(counts)
             df.update(counts.keys())
         if not doc_counts:

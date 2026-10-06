@@ -1,0 +1,30 @@
+{"query": "how much does the team plan cost per user per month", "expected_url": "/pricing", "expected_snippet": "49"}
+{"query": "price of the starter plan", "expected_url": "/pricing", "expected_snippet": "19"}
+{"query": "nonprofit discount percentage", "expected_url": "/pricing", "expected_snippet": "40%"}
+{"query": "how long is the free trial", "expected_url": "/pricing", "expected_snippet": "14-day"}
+{"query": "refund policy first 30 days", "expected_url": "/pricing", "expected_snippet": "refund"}
+{"query": "SAP connector availability", "expected_url": "/products/flow-connect", "expected_snippet": "S/4HANA"}
+{"query": "EDI EDIFACT X12 document support", "expected_url": "/products/flow-connect", "expected_snippet": "EDIFACT"}
+{"query": "how many prebuilt connectors", "expected_url": "/products/flow-connect", "expected_snippet": "80"}
+{"query": "SOC 2 Type II certification", "expected_url": "/products/flow-guard", "expected_snippet": "SOC 2"}
+{"query": "audit log retention period years", "expected_url": "/products/flow-guard", "expected_snippet": "7 years"}
+{"query": "EU data residency region location", "expected_url": "/products/flow-guard", "expected_snippet": "Frankfurt"}
+{"query": "single sign-on SAML OIDC", "expected_url": "/products/flow-guard", "expected_snippet": "SAML"}
+{"query": "API rate limit requests per minute", "expected_url": "/docs/api", "expected_snippet": "600"}
+{"query": "webhook payload signing secret", "expected_url": "/docs/api", "expected_snippet": "HMAC"}
+{"query": "API authentication bearer tokens", "expected_url": "/docs/api", "expected_snippet": "bearer"}
+{"query": "idempotency key header retries", "expected_url": "/docs/api", "expected_snippet": "Idempotency-Key"}
+{"query": "support email address", "expected_url": "/contact", "expected_snippet": "support@meridianflow.test"}
+{"query": "support hours central european time", "expected_url": "/contact", "expected_snippet": "9:00"}
+{"query": "phone number rotterdam headquarters", "expected_url": "/contact", "expected_snippet": "+31 10 555 0182"}
+{"query": "who founded the company ceo cto", "expected_url": "/about", "expected_snippet": "Mara Jansen"}
+{"query": "Series B funding amount raised", "expected_url": "/about", "expected_snippet": "€12"}
+{"query": "how many employees offices", "expected_url": "/about", "expected_snippet": "64"}
+{"query": "customs clearance time reduction case study", "expected_url": "/blog/automating-border-paperwork", "expected_snippet": "63%"}
+{"query": "shipments per week van dijk", "expected_url": "/blog/automating-border-paperwork", "expected_snippet": "400"}
+{"query": "flow version history rollback", "expected_url": "/products/flow-builder", "expected_snippet": "rollback"}
+{"query": "approval steps mobile app", "expected_url": "/products/flow-builder", "expected_snippet": "mobile"}
+{"query": "SLA tracking breach attribution", "expected_url": "/products/flow-insights", "expected_snippet": "SLA"}
+{"query": "CSV PDF export dashboards", "expected_url": "/products/flow-insights", "expected_snippet": "CSV"}
+{"query": "template library first flow minutes", "expected_url": "/docs/getting-started", "expected_snippet": "15"}
+{"query": "changelog version 2.4.0", "expected_url": "/changelog", "expected_snippet": "v2.4.0"}

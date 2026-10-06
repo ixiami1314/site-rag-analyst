@@ -7,8 +7,6 @@ import logging
 import httpx
 import numpy as np
 
-from site_rag_analyst.models import Chunk
-
 logger = logging.getLogger(__name__)
 
 _BATCH_SIZE = 64
@@ -30,7 +28,7 @@ class OpenAICompatEmbeddings:
         )
         self._dim: int | None = None
 
-    def fit(self, chunks: list[Chunk]) -> None:  # noqa: ARG002 - stateless provider
+    def fit(self, texts: list[str]) -> None:  # noqa: ARG002 - stateless provider
         return None
 
     def embed(self, texts: list[str]) -> list[np.ndarray]:

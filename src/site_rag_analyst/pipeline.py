@@ -22,7 +22,7 @@ from site_rag_analyst.chunking.chunker import Chunker
 from site_rag_analyst.config import Settings
 from site_rag_analyst.crawler.crawler import Crawler
 from site_rag_analyst.crawler.fetcher import DEMO_ORIGIN, DemoSiteFetcher, Fetcher, HttpFetcher
-from site_rag_analyst.embedding.base import build_provider
+from site_rag_analyst.embedding.base import build_provider, embedding_text
 from site_rag_analyst.extraction.extractor import ContentExtractor
 from site_rag_analyst.models import (
     ExtractedPage,
@@ -162,8 +162,9 @@ class Pipeline:
         # 4. embed -------------------------------------------------------- #
         started = time.perf_counter()
         provider = build_provider(settings)
-        provider.fit(chunks)
-        vectors = provider.embed([c.text for c in chunks])
+        texts = [embedding_text(c) for c in chunks]
+        provider.fit(texts)
+        vectors = provider.embed(texts)
         stats.append(
             StageStat(
                 stage="embed",

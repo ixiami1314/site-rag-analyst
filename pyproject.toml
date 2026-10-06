@@ -45,6 +45,7 @@ Issues = "https://github.com/ixiami1314/site-rag-analyst/issues"
 
 [project.scripts]
 site-rag = "site_rag_analyst.cli:main"
+site-rag-eval = "site_rag_analyst.eval.runner:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/site_rag_analyst"]

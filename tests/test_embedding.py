@@ -57,20 +57,20 @@ class TestTokenize:
 class TestTfidfEmbeddings:
     def test_fit_then_dim_matches_vocabulary(self) -> None:
         provider = TfidfEmbeddings()
-        provider.fit(CORPUS)
+        provider.fit([c.text for c in CORPUS])
         vectors = provider.embed([c.text for c in CORPUS])
         assert len(vectors) == 3
         assert all(v.shape == (provider.dim,) for v in vectors)
 
     def test_vectors_l2_normalized(self) -> None:
         provider = TfidfEmbeddings()
-        provider.fit(CORPUS)
+        provider.fit([c.text for c in CORPUS])
         for vector in provider.embed([c.text for c in CORPUS]):
             assert np.isclose(np.linalg.norm(vector), 1.0)
 
     def test_similar_query_scores_higher_than_unrelated(self) -> None:
         provider = TfidfEmbeddings()
-        provider.fit(CORPUS)
+        provider.fit([c.text for c in CORPUS])
         pricing_vec = provider.embed_query("how much does the team plan cost")
         unrelated_vec = provider.embed_query("karaoke night schedule")
 
@@ -81,7 +81,7 @@ class TestTfidfEmbeddings:
 
     def test_best_match_is_the_right_chunk(self) -> None:
         provider = TfidfEmbeddings()
-        provider.fit(CORPUS)
+        provider.fit([c.text for c in CORPUS])
         vectors = provider.embed([c.text for c in CORPUS])
         query = provider.embed_query("pricing of the starter and team plans")
         best = int(np.argmax([query @ v for v in vectors]))
@@ -93,8 +93,8 @@ class TestTfidfEmbeddings:
 
     def test_deterministic(self) -> None:
         a, b = TfidfEmbeddings(), TfidfEmbeddings()
-        a.fit(CORPUS)
-        b.fit(CORPUS)
+        a.fit([c.text for c in CORPUS])
+        b.fit([c.text for c in CORPUS])
         va = a.embed_query("workflow connectors pricing")
         vb = b.embed_query("workflow connectors pricing")
         assert np.allclose(va, vb)
