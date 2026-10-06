@@ -14,6 +14,7 @@ from __future__ import annotations
 import logging
 import time
 from collections import Counter
+from collections.abc import Callable
 from datetime import datetime
 from pathlib import Path
 
@@ -61,7 +62,14 @@ class Pipeline:
 
     # ------------------------------------------------------------------ #
 
-    def run(self, url: str, run_id: str | None = None) -> PipelineResult:
+    def run(
+        self,
+        url: str,
+        run_id: str | None = None,
+        on_stage: Callable[[StageStat], None] | None = None,
+    ) -> PipelineResult:
+        """Run the pipeline; ``on_stage`` (if given) receives each StageStat
+        as it completes — used by the server for live progress."""
         run_id = run_id or datetime.now().strftime("run-%Y%m%d-%H%M%S")
         demo_site = url.rstrip("/").startswith(DEMO_ORIGIN)
         result = PipelineResult(
@@ -71,8 +79,14 @@ class Pipeline:
             mode="demo" if self._settings.demo_mode else "live",
         )
         stats: list[StageStat] = []
+
+        def record(stat: StageStat) -> None:
+            stats.append(stat)
+            if on_stage is not None:
+                on_stage(stat)
+
         try:
-            result = self._run_inner(result, stats, demo_site)
+            result = self._run_inner(result, stats, record, demo_site)
         except Exception as exc:  # noqa: BLE001 - report errors as run results
             logger.exception("pipeline run %s failed", run_id)
             result.error = f"{type(exc).__name__}: {exc}"
@@ -87,7 +101,11 @@ class Pipeline:
     # ------------------------------------------------------------------ #
 
     def _run_inner(
-        self, result: PipelineResult, stats: list[StageStat], demo_site: bool
+        self,
+        result: PipelineResult,
+        stats: list[StageStat],
+        record: Callable[[StageStat], None],
+        demo_site: bool,
     ) -> PipelineResult:
         settings = self._settings
 
@@ -98,7 +116,7 @@ class Pipeline:
         )
         crawler = Crawler(fetcher=fetcher, settings=settings)
         fetched, crawl_stats = crawler.crawl(result.url)
-        stats.append(
+        record(
             StageStat(
                 stage="crawl",
                 detail=f"{crawl_stats.pages_fetched} fetched, "
@@ -128,7 +146,7 @@ class Pipeline:
             result.error = "extraction produced no pages above the minimum size"
             return result
         kept_avg = sum(d.kept_ratio for d in extracted) / len(extracted)
-        stats.append(
+        record(
             StageStat(
                 stage="extract",
                 detail=f"{len(extracted)} pages, avg kept_ratio {kept_avg:.2f}",
@@ -147,7 +165,7 @@ class Pipeline:
         for page_index, doc in enumerate(extracted):
             chunks.extend(chunker.chunk_page(doc, page_index=page_index))
         avg_words = sum(c.word_count for c in chunks) / max(len(chunks), 1)
-        stats.append(
+        record(
             StageStat(
                 stage="chunk",
                 detail=f"{len(chunks)} chunks, avg {avg_words:.0f} words "
@@ -165,7 +183,7 @@ class Pipeline:
         texts = [embedding_text(c) for c in chunks]
         provider.fit(texts)
         vectors = provider.embed(texts)
-        stats.append(
+        record(
             StageStat(
                 stage="embed",
                 detail=f"provider {provider.name}, dim {provider.dim}",
@@ -184,7 +202,7 @@ class Pipeline:
             store_path, dim=provider.dim if provider.name == "openai" else None
         )
         store.add(chunks, vectors)
-        stats.append(
+        record(
             StageStat(
                 stage="store",
                 detail=f"{store.backend_name()} at {store_path.name}",
@@ -206,7 +224,7 @@ class Pipeline:
                 )
             )
         hits = sum(len(p.results) for p in previews)
-        stats.append(
+        record(
             StageStat(
                 stage="retrieve",
                 detail=f"{len(previews)} queries x top-{settings.retrieval_top_k}, {hits} hits",
@@ -221,7 +239,7 @@ class Pipeline:
         analyst = self._analyst or build_analyst(settings)
         report = analyst.analyze(result.url, previews, extracted)
         report.pages = self._page_summaries(extracted, chunks)
-        stats.append(
+        record(
             StageStat(
                 stage="analyze",
                 detail=report.model or "unknown",

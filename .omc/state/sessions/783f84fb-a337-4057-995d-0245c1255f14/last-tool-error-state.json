@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"cd ~/workspace-guru/crazy-rag/site-rag-analyst && .venv/bin/python - <<'EOF'\\nfrom site_rag_analyst.config import Settings\\nfrom site_rag_analyst.crawler import Crawler, DemoSiteFetcher\\nf...",
-  "error": "Exit code 1\nkept ratios: [0.93, 0.94, 0.93, 0.92, 0.92, 0.95, 0.94, 0.91, 0.93, 0.91, 0.93, 0.94]\navg: 0.929\n..........................                                               [100%]",
-  "timestamp": "2026-10-06T10:02:03.129Z",
+  "tool_input_preview": "{\"command\":\"cd ~/workspace-guru/crazy-rag/site-rag-analyst && .venv/bin/python -m pytest tests/test_server.py -q 2>&1 | tail -2 && .venv/bin/python -m pytest tests/ -q 2>&1 | tail -1 && .venv/bin/pyth...",
+  "error": "Exit code 1\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\nB017 Do not assert blind exception: `Exception`\n  --> tests/test_server.py:74:14\n   |\n73 |     def test_garbage_host_rejected(self) -> None:\n74 |         with pytest.raises(Exception):\n   |              ^^^^^^^^^^^^^^^^^^^^^^^^\n75 |             _validate_target(\"https://this-host-does-not-exist-qqq123/\")\n   |\n\nFound 1 error.",
+  "timestamp": "2026-10-06T10:21:13.689Z",
   "retry_count": 1
 }

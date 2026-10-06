@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>site-rag-analyst — crawl ▸ ground ▸ report</title>
+<meta name="description" content="Crawl a website, ground an LLM in it, produce a structured, citation-backed analysis report. Live pipeline demo.">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230C0F0E'/><path d='M3 4h6v2H5v4h4v2H3z' fill='%23E8A33D'/><path d='M9 6h2v2h2V6h2v6h-2v-2h-2v2H9z' fill='%23D6DEDA'/></svg>">
+</head>
+<body>
+<div class="frame">
+
+  <header class="masthead reveal r1">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▚▞</span>
+      <span class="brand-name">site-rag-analyst</span>
+      <span class="brand-sub">crawl ▸ ground ▸ report</span>
+    </div>
+    <div class="masthead-right">
+      <span id="mode-badge" class="badge" title="loading…">···</span>
+      <a class="repo-link" href="https://github.com/ixiami1314/site-rag-analyst" target="_blank" rel="noopener">src ↗</a>
+    </div>
+  </header>
+
+  <section class="console panel reveal r2">
+    <div class="prompt-line">
+      <span class="prompt-glyph" aria-hidden="true">›</span>
+      <input id="url-input" type="url" spellcheck="false" autocomplete="off"
+             placeholder="https://example.com — a site to analyze">
+      <button id="btn-demo" class="btn ghost" title="Run the bundled fictional site, fully offline">demo site</button>
+      <button id="btn-run" class="btn primary">analyze ▸</button>
+    </div>
+    <p class="hint">
+      crawl → extract → chunk → embed → retrieve → analyze — every claim cited to its source chunk.
+      robots.txt respected · rate-limited · public hosts only.
+    </p>
+    <div id="run-error" class="error-line" hidden></div>
+  </section>
+
+  <section id="pipeline" class="pipeline reveal r3" hidden>
+    <div class="section-label">pipeline</div>
+    <div class="rail" id="rail"></div>
+    <div class="run-meta" id="run-meta"></div>
+  </section>
+
+  <main id="output" hidden>
+    <nav class="tabs" id="tabs" role="tablist">
+      <button class="tab is-active" data-pane="pane-report" role="tab">Report</button>
+      <button class="tab" data-pane="pane-pages" role="tab">Pages</button>
+      <button class="tab" data-pane="pane-chunks" role="tab">Chunks</button>
+      <button class="tab" data-pane="pane-retrieval" role="tab">Retrieval</button>
+      <button class="tab" data-pane="pane-stats" role="tab">Stats</button>
+    </nav>
+    <div class="panes">
+      <section class="pane is-active" id="pane-report"></section>
+      <section class="pane" id="pane-pages"></section>
+      <section class="pane" id="pane-chunks"></section>
+      <section class="pane" id="pane-retrieval"></section>
+      <section class="pane" id="pane-stats"></section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span>an open-source RAG pipeline · <a href="https://github.com/ixiami1314/site-rag-analyst">ixiami1314/site-rag-analyst</a></span>
+    <span id="foot-note"></span>
+  </footer>
+
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>
