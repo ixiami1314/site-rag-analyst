@@ -19,8 +19,9 @@ artifact is inspectable, retrieval quality is **measured** (a labeled eval
 set + metrics + a CI quality gate), and the whole thing runs with **zero
 configuration and zero API keys** in demo mode.
 
-**Live demo:** http://120.26.237.212:8100/ — demo mode (offline embeddings +
-extractive analyst; no LLM is called on the demo server).
+**Live demo:** http://120.26.237.212/site-rag/ — demo mode (offline embeddings +
+extractive analyst; no LLM is called on the demo server). Type any public URL
+to crawl a real site through the same pipeline.
 
 ![screenshot](docs/screenshot-report.png)
 
