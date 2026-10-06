@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd ~/workspace-guru/crazy-rag/site-rag-analyst && .venv/bin/python -m ruff check src tests && .venv/bin/python -m pytest tests/ 2>&1 | tail -1 && git add -A && git commit -q -m \\\"feat(embe...",
+  "error": "Exit code 1\nSIM905 [*] Consider using a list literal instead of `str.split`\n  --> src/site_rag_analyst/embedding/tfidf.py:31:5\n   |\n29 |   # (Kept as a split string for readability; SIM905 wants a one-line list.)\n30 |   _STOPWORDS = frozenset(  # noqa: SIM905\n31 | /     \"\"\"\n32 | |     a an and are as at be been but by can could did do does for from get got\n33 | |     had has have how i if in into is it its just like may me might more most\n34 | |     must my no not of on or our out over own said ...",
+  "timestamp": "2026-10-06T09:50:09.786Z",
+  "retry_count": 2
+}

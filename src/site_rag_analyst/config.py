@@ -46,7 +46,7 @@ class Settings(BaseSettings):
     crawl_delay_seconds: float = Field(default=1.0, ge=0.0)
     respect_robots: bool = True
     user_agent: str = (
-        "site-rag-analyst/0.1 (+https://github.com/weijun/site-rag-analyst)"
+        "site-rag-analyst/0.1 (+https://github.com/ixiami1314/site-rag-analyst)"
     )
 
     # --- Chunking ---

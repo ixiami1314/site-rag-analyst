@@ -40,8 +40,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/weijun/site-rag-analyst"
-Issues = "https://github.com/weijun/site-rag-analyst/issues"
+Homepage = "https://github.com/ixiami1314/site-rag-analyst"
+Issues = "https://github.com/ixiami1314/site-rag-analyst/issues"
 
 [project.scripts]
 site-rag = "site_rag_analyst.cli:main"
