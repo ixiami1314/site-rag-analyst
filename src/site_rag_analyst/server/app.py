@@ -22,6 +22,7 @@ import logging
 import socket
 import uuid
 from collections import OrderedDict
+from contextlib import asynccontextmanager
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -154,12 +155,14 @@ class RunRegistry:
 def create_app(settings: Settings | None = None) -> FastAPI:
     settings = settings or get_settings()
     registry = RunRegistry()
-    app = FastAPI(title="site-rag-analyst", version=__version__)
 
-    @app.on_event("startup")
-    def _prepare() -> None:
+    @asynccontextmanager
+    async def lifespan(_app: FastAPI):
         settings.data_dir.mkdir(parents=True, exist_ok=True)
         settings.output_dir.mkdir(parents=True, exist_ok=True)
+        yield
+
+    app = FastAPI(title="site-rag-analyst", version=__version__, lifespan=lifespan)
 
     @app.get("/api/config")
     def config() -> dict[str, Any]:
